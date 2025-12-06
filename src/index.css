@@ -1,0 +1,342 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Core Colors - Futuristic Cyber Theme */
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+
+    --card: 0 0% 5%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 0 0% 5%;
+    --popover-foreground: 0 0% 100%;
+
+    /* Neon Blue Primary */
+    --primary: 186 100% 45%;
+    --primary-foreground: 0 0% 0%;
+
+    /* Electric Purple Secondary */
+    --secondary: 275 100% 50%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 275 100% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 186 100% 45%;
+
+    --radius: 0.75rem;
+
+    /* Custom Neon Colors */
+    --neon-blue: 186 100% 45%;
+    --neon-purple: 275 100% 50%;
+    --neon-cyan: 180 100% 50%;
+    --glass-bg: 0 0% 100% / 0.05;
+    --glass-border: 0 0% 100% / 0.1;
+
+    /* Shadows & Glows */
+    --glow-blue: 0 0 30px hsl(186 100% 45% / 0.5);
+    --glow-purple: 0 0 30px hsl(275 100% 50% / 0.5);
+    --glow-intense: 0 0 60px hsl(186 100% 45% / 0.8), 0 0 120px hsl(186 100% 45% / 0.4);
+
+    /* Sidebar (keeping for compatibility) */
+    --sidebar-background: 0 0% 3%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 186 100% 45%;
+    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-accent: 275 100% 50%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 0 0% 15%;
+    --sidebar-ring: 186 100% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    background: radial-gradient(ellipse at top, hsl(0 0% 8%) 0%, hsl(0 0% 0%) 50%);
+    min-height: 100vh;
+  }
+
+  ::selection {
+    background: hsl(var(--primary) / 0.3);
+    color: hsl(var(--foreground));
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary) / 0.5);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary));
+  }
+}
+
+@layer components {
+  /* Glassmorphism Card */
+  .glass-card {
+    @apply relative overflow-hidden rounded-xl;
+    background: hsl(var(--glass-bg));
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--glass-border));
+  }
+
+  /* Neon Glow Effects */
+  .neon-glow {
+    text-shadow: 
+      0 0 10px hsl(var(--primary)),
+      0 0 20px hsl(var(--primary)),
+      0 0 40px hsl(var(--primary)),
+      0 0 80px hsl(var(--primary) / 0.5);
+  }
+
+  .neon-glow-purple {
+    text-shadow: 
+      0 0 10px hsl(var(--secondary)),
+      0 0 20px hsl(var(--secondary)),
+      0 0 40px hsl(var(--secondary)),
+      0 0 80px hsl(var(--secondary) / 0.5);
+  }
+
+  /* Neon Border */
+  .neon-border {
+    @apply relative;
+    box-shadow: 
+      0 0 5px hsl(var(--primary) / 0.5),
+      0 0 20px hsl(var(--primary) / 0.3),
+      inset 0 0 20px hsl(var(--primary) / 0.1);
+    border: 1px solid hsl(var(--primary) / 0.5);
+  }
+
+  .neon-border-purple {
+    box-shadow: 
+      0 0 5px hsl(var(--secondary) / 0.5),
+      0 0 20px hsl(var(--secondary) / 0.3),
+      inset 0 0 20px hsl(var(--secondary) / 0.1);
+    border: 1px solid hsl(var(--secondary) / 0.5);
+  }
+
+  /* Animated Gradient Border */
+  .gradient-border {
+    @apply relative;
+    background: linear-gradient(hsl(var(--background)), hsl(var(--background))) padding-box,
+                linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)), hsl(var(--primary))) border-box;
+    border: 2px solid transparent;
+  }
+
+  /* Cyber Grid Background */
+  .cyber-grid {
+    background-image: 
+      linear-gradient(hsl(var(--primary) / 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--primary) / 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  /* Scanline Effect */
+  .scanlines::after {
+    content: '';
+    @apply absolute inset-0 pointer-events-none;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      hsl(0 0% 0% / 0.03) 2px,
+      hsl(0 0% 0% / 0.03) 4px
+    );
+  }
+
+  /* Floating Animation */
+  .float-animation {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  /* Pulse Glow Animation */
+  .pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% { 
+      box-shadow: 0 0 20px hsl(var(--primary) / 0.5);
+    }
+    50% { 
+      box-shadow: 0 0 40px hsl(var(--primary) / 0.8), 0 0 60px hsl(var(--primary) / 0.4);
+    }
+  }
+
+  /* Tech Card Hover Effect */
+  .tech-card {
+    @apply glass-card transition-all duration-500;
+  }
+
+  .tech-card:hover {
+    transform: translateY(-10px) rotateX(5deg);
+    box-shadow: 
+      0 20px 40px hsl(var(--primary) / 0.2),
+      0 0 30px hsl(var(--primary) / 0.3);
+  }
+
+  /* Section Title Styling */
+  .section-title {
+    @apply font-heading text-4xl md:text-5xl lg:text-6xl font-bold;
+    background: linear-gradient(135deg, hsl(var(--foreground)), hsl(var(--primary)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Button Variants */
+  .btn-neon {
+    @apply relative px-8 py-4 font-heading font-semibold uppercase tracking-wider;
+    @apply bg-transparent border-2 border-primary text-primary;
+    @apply transition-all duration-300;
+    @apply hover:bg-primary hover:text-primary-foreground;
+    @apply hover:shadow-[0_0_30px_hsl(var(--primary)/0.5)];
+  }
+
+  .btn-neon-fill {
+    @apply relative px-8 py-4 font-heading font-semibold uppercase tracking-wider;
+    @apply bg-primary text-primary-foreground border-2 border-primary;
+    @apply transition-all duration-300;
+    @apply hover:shadow-[0_0_30px_hsl(var(--primary)/0.8)];
+  }
+
+  .btn-neon-purple {
+    @apply relative px-8 py-4 font-heading font-semibold uppercase tracking-wider;
+    @apply bg-transparent border-2 border-secondary text-secondary;
+    @apply transition-all duration-300;
+    @apply hover:bg-secondary hover:text-secondary-foreground;
+    @apply hover:shadow-[0_0_30px_hsl(var(--secondary)/0.5)];
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-cyan {
+    background: linear-gradient(135deg, hsl(var(--neon-cyan)), hsl(var(--primary)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-gradient-radial {
+    background: radial-gradient(ellipse at center, var(--tw-gradient-stops));
+  }
+
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+
+  /* Neon Sweep Animation for Headings */
+  .neon-sweep {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .neon-sweep::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(var(--primary) / 0.4),
+      transparent
+    );
+    animation: neon-sweep 3s ease-in-out infinite;
+  }
+
+  @keyframes neon-sweep {
+    0% { transform: translateX(-100%); }
+    50%, 100% { transform: translateX(100%); }
+  }
+
+  /* Glass Reflection Effect */
+  .glass-reflection {
+    position: relative;
+  }
+
+  .glass-reflection::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(
+      to bottom,
+      hsl(0 0% 100% / 0.1),
+      transparent
+    );
+    pointer-events: none;
+  }
+
+  /* Mirror Reflection Under Cards */
+  .mirror-reflection {
+    position: relative;
+  }
+
+  .mirror-reflection::after {
+    content: '';
+    position: absolute;
+    bottom: -50%;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: inherit;
+    transform: scaleY(-1);
+    opacity: 0.15;
+    filter: blur(4px);
+    mask-image: linear-gradient(to bottom, transparent, black);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black);
+    pointer-events: none;
+  }
+}
