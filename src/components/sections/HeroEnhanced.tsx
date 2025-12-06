@@ -1,38 +1,31 @@
 import { motion, useMotionValue, useTransform } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
 import { Scene3D } from "../3d/Scene3D";
 import { ChevronDown, Mic, Play, Sparkles } from "lucide-react";
-import { useState, useEffect, useRef } from "react";
 
 function VoiceAssistantIcon() {
+  const [isListening, setIsListening] = useState(false);
   const [isPulsing, setIsPulsing] = useState(false);
 
-  const handleClick = () => {
+  const toggleListening = () => {
+    setIsListening(!isListening);
     setIsPulsing(true);
-    // Web Speech API for voice
-    if ("speechSynthesis" in window) {
-      const utterance = new SpeechSynthesisUtterance(
-        "Hi, Mayank here — Which solution do you need today?"
-      );
-      utterance.rate = 0.9;
-      utterance.pitch = 1;
-      window.speechSynthesis.speak(utterance);
-    }
-    setTimeout(() => setIsPulsing(false), 3000);
+    setTimeout(() => setIsPulsing(false), 1000);
   };
 
   return (
     <motion.button
-      onClick={handleClick}
-      className="absolute top-8 right-8 w-14 h-14 rounded-full glass-card flex items-center justify-center group z-20"
+      onClick={toggleListening}
+      className="fixed bottom-8 right-8 w-14 h-14 rounded-full glass-card flex items-center justify-center group z-30"
       whileHover={{ scale: 1.1 }}
-      whileTap={{ scale: 0.95 }}
+      whileTap={{ scale: 0.9 }}
       animate={
         isPulsing
           ? {
               boxShadow: [
-                "0 0 20px hsl(186 100% 45% / 0.5)",
-                "0 0 40px hsl(186 100% 45% / 0.8)",
-                "0 0 20px hsl(186 100% 45% / 0.5)",
+                "0 0 0 0 hsl(var(--primary) / 0.5)",
+                "0 0 0 10px hsl(var(--primary) / 0.3)",
+                "0 0 0 0 hsl(var(--primary) / 0)",
               ],
             }
           : {}
@@ -195,43 +188,6 @@ function ParticleBlastButton({
   );
 }
 
-function JarvisButtons() {
-  const commands = [
-    { label: "Projects", icon: "📁", href: "#projects" },
-    { label: "Services", icon: "⚡", href: "#services" },
-    { label: "Contact", icon: "💬", href: "#contact" },
-  ];
-
-  return (
-    <motion.div
-      className="absolute left-8 top-1/2 -translate-y-1/2 hidden lg:flex flex-col gap-3 z-20"
-      initial={{ opacity: 0, x: -50 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ delay: 1.5, duration: 0.8 }}
-    >
-      {commands.map((cmd, i) => (
-        <motion.a
-          key={cmd.label}
-          href={cmd.href}
-          className="glass-card px-4 py-2 flex items-center gap-2 text-sm font-body text-muted-foreground hover:text-primary hover:border-primary/50 transition-all duration-300 group"
-          whileHover={{ x: 10, scale: 1.05 }}
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 1.5 + i * 0.1 }}
-        >
-          <span>{cmd.icon}</span>
-          <span className="group-hover:text-primary">{cmd.label}</span>
-          <motion.div
-            className="w-2 h-2 rounded-full bg-primary ml-auto"
-            animate={{ opacity: [0.5, 1, 0.5] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-          />
-        </motion.a>
-      ))}
-    </motion.div>
-  );
-}
-
 function IntroAnimation({ onComplete }: { onComplete: () => void }) {
   return (
     <motion.div
@@ -291,11 +247,10 @@ export function HeroEnhanced() {
         <Scene3D />
         <LightRays />
 
-        {/* Voice Assistant */}
-        <VoiceAssistantIcon />
-
-        {/* JARVIS Buttons */}
-        <JarvisButtons />
+        {/* Voice Assistant - Moved further down and right to avoid navbar overlap */}
+        <div className="fixed bottom-8 right-8 w-12 h-12 rounded-full glass-card flex items-center justify-center group z-30">
+          <VoiceAssistantIcon />
+        </div>
 
         {/* Cyber Grid Overlay */}
         <div className="absolute inset-0 cyber-grid opacity-30" />
@@ -335,7 +290,7 @@ export function HeroEnhanced() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="font-body text-xl md:text-2xl text-muted-foreground mb-4 tracking-wide"
+            className="font-body text-xl md:text-2xl text-muted-foreground mb-4 tracking-wide font-times"
             style={{
               fontFeatureSettings: "'salt', 'ss02', 'ss03'",
             }}
@@ -370,7 +325,7 @@ export function HeroEnhanced() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 1.1 }}
-            className="mt-16 text-muted-foreground font-body text-sm tracking-wider"
+            className="mt-16 text-muted-foreground font-body text-sm tracking-wider font-times"
           >
             "One Stop Digital Solution Provider"
           </motion.p>

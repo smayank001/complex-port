@@ -1,19 +1,25 @@
-import { motion } from 'framer-motion';
-import { Scene3D } from '../3d/Scene3D';
-import { ChevronDown } from 'lucide-react';
+import { motion } from "framer-motion";
+import { Scene3D } from "../3d/Scene3D";
+import { ChevronDown } from "lucide-react";
+import { useGPUAcceleration } from "@/hooks/usePerformance";
 
 export function Hero() {
+  const gpuRef = useGPUAcceleration();
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      ref={gpuRef}
+    >
       <Scene3D />
-      
+
       {/* Cyber Grid Overlay */}
       <div className="absolute inset-0 cyber-grid opacity-30" />
-      
+
       {/* Gradient Overlays */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background" />
       <div className="absolute inset-0 bg-gradient-radial from-primary/10 via-transparent to-transparent" />
-      
+
       <div className="container relative z-10 px-4 text-center">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -25,7 +31,7 @@ export function Hero() {
             Full-Stack Engineer
           </span>
         </motion.div>
-        
+
         <motion.h1
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -37,7 +43,7 @@ export function Hero() {
           <br />
           <span className="text-gradient-cyan">Digital Solutions</span>
         </motion.h1>
-        
+
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -46,7 +52,7 @@ export function Hero() {
         >
           Web • Apps • AI • Automation
         </motion.p>
-        
+
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -55,27 +61,21 @@ export function Hero() {
         >
           Mayank Saxena
         </motion.p>
-        
+
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
-          <a 
-            href="#projects"
-            className="btn-neon-fill rounded-lg"
-          >
+          <a href="#projects" className="btn-neon-fill rounded-lg">
             View My Work
           </a>
-          <a 
-            href="#contact"
-            className="btn-neon-purple rounded-lg"
-          >
+          <a href="#contact" className="btn-neon-purple rounded-lg">
             Hire Me
           </a>
         </motion.div>
-        
+
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -85,7 +85,7 @@ export function Hero() {
           "Your Vision — Engineered."
         </motion.p>
       </div>
-      
+
       {/* Scroll Indicator */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -98,7 +98,9 @@ export function Hero() {
           transition={{ duration: 1.5, repeat: Infinity }}
           className="flex flex-col items-center gap-2 text-muted-foreground"
         >
-          <span className="text-xs font-body tracking-widest uppercase">Scroll</span>
+          <span className="text-xs font-body tracking-widest uppercase">
+            Scroll
+          </span>
           <ChevronDown className="w-5 h-5 text-primary" />
         </motion.div>
       </motion.div>

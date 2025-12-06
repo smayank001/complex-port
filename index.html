@@ -9,28 +9,67 @@
     <meta name="keywords" content="Full-Stack Developer, Web Developer, App Developer, AI Chatbot, Automation, React, Node.js, Portfolio" />
     
     <link rel="canonical" href="https://mayanksaxena.dev" />
-
+    
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap"></noscript>
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Preload critical CSS -->
+    <link rel="preload" as="style" href="/src/index.css" />
+    
+    <!-- Critical CSS for initial render -->
+    <style>
+      /* Critical above-the-fold styles */
+      body {
+        background: #000;
+        margin: 0;
+        font-family: 'Times New Roman', Times, serif;
+      }
+      
+      /* Loading spinner */
+      .loading-spinner {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 40px;
+        height: 40px;
+        border: 4px solid rgba(0, 230, 255, 0.3);
+        border-top: 4px solid #00E6FF;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        z-index: 9999;
+      }
+      
+      @keyframes spin {
+        0% { transform: translate(-50%, -50%) rotate(0deg); }
+        100% { transform: translate(-50%, -50%) rotate(360deg); }
+      }
+      
+      /* Hide content until app loads */
+      #root:not(:empty) + .loading-spinner {
+        display: none;
+      }
+    </style>
+    
     <meta property="og:title" content="Mayank Saxena | Full-Stack Developer" />
     <meta property="og:description" content="I Build Modern Digital Solutions — Web • Apps • AI • Automation" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="" />
-
+    
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Mayank Saxena | Full-Stack Developer" />
     <meta name="twitter:description" content="I Build Modern Digital Solutions — Web • Apps • AI • Automation" />
     <meta name="twitter:image" content="" />
-    
-    <style>
-      /* Preload critical styles */
-      body {
-        background: #000;
-        margin: 0;
-      }
-    </style>
   </head>
-
+  
   <body>
     <div id="root"></div>
+    <div class="loading-spinner"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

@@ -82,7 +82,7 @@ export function Contact() {
                 {
                   icon: Mail,
                   label: "Email",
-                  value: "mayanksaxen1262@gmail.com",
+                  value: "mayanksaxena1262@gmail.com",
                 },
                 { icon: Phone, label: "Phone", value: "+91 8851432459" },
                 { icon: MapPin, label: "Location", value: "Noida, India" },

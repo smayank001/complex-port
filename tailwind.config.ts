@@ -15,7 +15,7 @@ export default {
     extend: {
       fontFamily: {
         heading: ["Orbitron", "sans-serif"],
-        body: ["Poppins", "Inter", "Montserrat", "sans-serif"],
+        body: ["Times New Roman", "Times", "serif"],
       },
       colors: {
         border: "hsl(var(--border))",

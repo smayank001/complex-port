@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Play,
   Pause,
@@ -93,7 +93,7 @@ const designs = [
 // Logo designs data
 const logos = [
   { id: 1, name: "TechFlow", colors: ["#00E6FF", "#8F00FF"] },
-  { id: 2, name: "EcoLeaf", colors: ["#00FF88", "#00E6FF"] },
+  { id: 2, name: "AeroSync", colors: ["#FF6B9D", "#FFD700"] },
   { id: 3, name: "Quantum", colors: ["#FFD700", "#FF6B35"] },
   { id: 4, name: "Nebula", colors: ["#8F00FF", "#E91E63"] },
   { id: 5, name: "Forge", colors: ["#FF4500", "#FFD700"] },
@@ -125,10 +125,13 @@ function VideoCarousel() {
             className="relative preserve-3d"
           >
             <div className="relative aspect-video rounded-2xl overflow-hidden glass-card group">
+              {/* Lazy loaded image with loading attribute */}
               <img
                 src={videos[currentIndex].thumbnail}
                 alt={videos[currentIndex].title}
                 className="w-full h-full object-cover"
+                loading="lazy"
+                decoding="async"
               />
 
               {/* Play overlay */}
@@ -138,6 +141,7 @@ function VideoCarousel() {
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => setIsPlaying(!isPlaying)}
+                  aria-label={isPlaying ? "Pause video" : "Play video"}
                 >
                   {isPlaying ? (
                     <Pause className="w-8 h-8 text-primary-foreground" />
@@ -158,33 +162,34 @@ function VideoCarousel() {
               />
 
               {/* Duration badge */}
-              <div className="absolute bottom-4 right-4 px-3 py-1 rounded-full bg-background/80 text-foreground text-sm font-body">
+              <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-black/50 backdrop-blur-sm text-sm font-body">
                 {videos[currentIndex].duration}
               </div>
             </div>
 
-            {/* Video info */}
+            {/* Video Info */}
             <div className="mt-6 text-center">
-              <span className="text-primary text-sm font-body uppercase tracking-wider">
-                {videos[currentIndex].category}
-              </span>
-              <h4 className="font-heading text-2xl font-bold mt-2">
+              <h4 className="font-heading text-2xl font-bold mb-2">
                 {videos[currentIndex].title}
               </h4>
-              <p className="text-muted-foreground font-body mt-2">
+              <p className="text-muted-foreground font-body mb-2">
                 {videos[currentIndex].description}
               </p>
+              <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-body">
+                {videos[currentIndex].category}
+              </span>
             </div>
           </motion.div>
         </AnimatePresence>
 
         {/* Navigation */}
-        <div className="flex justify-center gap-4 mt-8">
+        <div className="flex items-center justify-center gap-4 mt-8">
           <motion.button
             onClick={prevVideo}
             className="w-12 h-12 rounded-full glass-card flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
+            aria-label="Previous video"
           >
             <ChevronLeft className="w-6 h-6" />
           </motion.button>
@@ -199,6 +204,7 @@ function VideoCarousel() {
                     ? "bg-primary w-6"
                     : "bg-muted-foreground/30"
                 }`}
+                aria-label={`Go to video ${i + 1}`}
               />
             ))}
           </div>
@@ -208,12 +214,14 @@ function VideoCarousel() {
             className="w-12 h-12 rounded-full glass-card flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
+            aria-label="Next video"
           >
             <ChevronRight className="w-6 h-6" />
           </motion.button>
         </div>
       </div>
 
+      {/* Preview thumbnails */}
       <div className="absolute -left-20 top-1/2 -translate-y-1/2 hidden xl:block">
         <motion.div
           className="w-32 h-20 rounded-lg overflow-hidden glass-card opacity-50"
@@ -227,6 +235,8 @@ function VideoCarousel() {
             }
             alt=""
             className="w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
           />
         </motion.div>
       </div>
@@ -241,6 +251,8 @@ function VideoCarousel() {
             src={videos[(currentIndex + 1) % videos.length].thumbnail}
             alt=""
             className="w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
           />
         </motion.div>
       </div>
@@ -278,41 +290,36 @@ function DesignGallery() {
               }
             >
               <div className="relative aspect-[4/3] rounded-xl overflow-hidden glass-card">
+                {/* Lazy loaded image */}
                 <img
                   src={design.image}
                   alt={design.title}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  loading="lazy"
+                  decoding="async"
                 />
 
                 {/* Holographic overlay */}
-                <motion.div
-                  className="absolute inset-0 pointer-events-none"
-                  style={{
-                    background:
-                      "linear-gradient(135deg, transparent, hsl(var(--primary) / 0.2), transparent)",
-                  }}
-                  animate={
-                    hoveredId === design.id ? { x: ["100%", "-100%"] } : {}
-                  }
-                  transition={{ duration: 0.8 }}
-                />
+                <div className="absolute inset-0 pointer-events-none">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10" />
+                  <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxMCIgY3k9IjEwIiByPSIxIiBmaWxsPSIjMDBFNkZGIi8+PGNpcmNsZSBjeD0iNDAiIGN5PSI0MCIgcj0iMSIgZmlsbD0iIzhGMDAwRiIvPjwvc3ZnPg==')] opacity-20" />
+                </div>
 
                 {/* Info overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="absolute bottom-0 left-0 right-0 p-4">
-                    <span className="text-primary text-xs uppercase tracking-wider">
-                      {design.category}
-                    </span>
-                    <h4 className="font-heading text-lg font-bold text-foreground">
-                      {design.title}
-                    </h4>
-                  </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent flex flex-col justify-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <h4 className="font-heading text-lg font-bold text-foreground">
+                    {design.title}
+                  </h4>
+                  <span className="text-primary text-sm font-body">
+                    {design.category}
+                  </span>
                 </div>
 
                 {/* Expand button */}
                 <motion.button
                   className="absolute top-4 right-4 w-10 h-10 rounded-full glass-card flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
                   whileHover={{ scale: 1.1 }}
+                  aria-label={`View ${design.title}`}
                 >
                   <Maximize2 className="w-4 h-4 text-foreground" />
                 </motion.button>
@@ -342,71 +349,40 @@ function LogoGallery() {
       </h3>
 
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-        {logos.map((logo, index) => (
+        {logos.map((logo) => (
           <motion.div
             key={logo.id}
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: index * 0.1 }}
-            className="relative group"
+            whileHover={{ y: -10 }}
+            className="aspect-square rounded-2xl glass-card flex flex-col items-center justify-center p-6 cursor-pointer group"
+            onClick={() => handleRotate(logo.id)}
           >
             <motion.div
-              className="aspect-square rounded-xl glass-card p-4 flex flex-col items-center justify-center cursor-pointer"
-              whileHover={{ scale: 1.05 }}
-              animate={{ rotateY: rotations[logo.id] || 0 }}
-              transition={{ type: "spring", stiffness: 200 }}
+              className="w-24 h-24 rounded-full flex items-center justify-center mb-4"
               style={{
-                boxShadow: `0 0 30px ${logo.colors[0]}30`,
+                background: `linear-gradient(135deg, ${logo.colors[0]}, ${logo.colors[1]})`,
               }}
+              animate={{ rotate: rotations[logo.id] || 0 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
-              {/* 3D Hologram Logo */}
-              <motion.div
-                className="w-16 h-16 rounded-xl flex items-center justify-center mb-3 relative"
-                style={{
-                  background: `linear-gradient(135deg, ${logo.colors[0]}, ${logo.colors[1]})`,
-                }}
-                animate={{ rotateY: [0, 360] }}
-                transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-              >
-                <span className="font-heading text-2xl font-bold text-white">
-                  {logo.name[0]}
-                </span>
-
-                {/* Hologram effect */}
-                <motion.div
-                  className="absolute inset-0 rounded-xl"
-                  style={{
-                    background:
-                      "linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.3) 50%, transparent 60%)",
-                  }}
-                  animate={{ x: ["-100%", "100%"] }}
-                  transition={{ duration: 2, repeat: Infinity, repeatDelay: 1 }}
-                />
-              </motion.div>
-
-              <span className="font-body text-sm text-muted-foreground">
-                {logo.name}
+              <span className="font-heading text-2xl font-bold text-white">
+                {logo.name.charAt(0)}
               </span>
-
-              {/* Glow on hover */}
-              <motion.div
-                className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-                style={{
-                  boxShadow: `0 0 40px ${logo.colors[0]}50, inset 0 0 20px ${logo.colors[0]}20`,
-                }}
-              />
             </motion.div>
-
-            {/* Rotation control */}
-            <motion.button
-              onClick={() => handleRotate(logo.id)}
-              className="absolute -bottom-2 -right-2 w-8 h-8 rounded-full bg-background border border-border flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <RotateCcw className="w-4 h-4 text-primary" />
-            </motion.button>
+            <h4 className="font-heading text-lg font-bold text-foreground group-hover:text-primary transition-colors">
+              {logo.name}
+            </h4>
+            <div className="flex gap-2 mt-2">
+              {logo.colors.map((color, i) => (
+                <div
+                  key={i}
+                  className="w-3 h-3 rounded-full"
+                  style={{ backgroundColor: color }}
+                />
+              ))}
+            </div>
           </motion.div>
         ))}
       </div>
@@ -418,91 +394,85 @@ interface MediaFullscreenProps {
   onClose: () => void;
 }
 
-const MediaFullscreen = ({ onClose }: MediaFullscreenProps) => {
-  return (
-    <div className="fixed inset-0 z-[100] bg-background overflow-y-auto">
-      <button
-        onClick={onClose}
-        className="fixed top-4 right-4 z-50 w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-2xl font-bold hover:bg-primary/80 transition-colors shadow-lg"
-      >
-        <X className="w-6 h-6" />
-      </button>
-
-      <div className="container px-4 py-20">
-        {/* Hero Section */}
-        <section className="py-20 relative">
-          <div className="absolute inset-0 bg-gradient-radial from-primary/10 via-transparent to-transparent" />
-
-          <div className="container px-4 relative z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-center mb-16"
-            >
-              <span className="inline-block px-4 py-2 rounded-full border border-primary/30 bg-primary/10 text-primary font-body text-sm tracking-widest uppercase mb-6">
-                Portfolio
-              </span>
-              <h1 className="section-title mb-4">Media Gallery</h1>
-              <p className="text-muted-foreground font-body text-lg max-w-2xl mx-auto">
-                A showcase of creative work spanning video production, graphic
-                design, and brand identity
-              </p>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Video Section */}
-        <section className="py-20 relative">
-          <div className="container px-4">
-            <VideoCarousel />
-          </div>
-        </section>
-
-        {/* Design Section */}
-        <section className="py-20 relative">
-          <div className="container px-4">
-            <DesignGallery />
-          </div>
-        </section>
-
-        {/* Logo Section */}
-        <section className="py-20 relative">
-          <div className="container px-4">
-            <LogoGallery />
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="py-20 relative">
-          <div className="container px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="glass-card p-12 text-center max-w-3xl mx-auto"
-            >
-              <h2 className="font-heading text-3xl font-bold mb-4">
-                Ready to Transform Your{" "}
-                <span className="text-gradient">Digital Presence</span>?
-              </h2>
-              <p className="text-muted-foreground font-body mb-8">
-                Let's collaborate on your next groundbreaking project and
-                transform your vision into reality
-              </p>
-              <motion.button
-                onClick={onClose}
-                className="btn-neon-fill rounded-xl inline-block"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                Close Gallery
-              </motion.button>
-            </motion.div>
-          </div>
-        </section>
-      </div>
-    </div>
+export default function MediaFullscreen({ onClose }: MediaFullscreenProps) {
+  const [activeTab, setActiveTab] = useState<"video" | "design" | "logo">(
+    "video"
   );
-};
 
-export default MediaFullscreen;
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-[100] bg-background/95 backdrop-blur-2xl"
+    >
+      <div className="container px-4 py-8 h-full flex flex-col">
+        {/* Header */}
+        <div className="flex justify-between items-center mb-8">
+          <h2 className="font-heading text-3xl font-bold">
+            <span className="text-gradient">Media</span> Gallery
+          </h2>
+
+          <motion.button
+            onClick={onClose}
+            className="p-3 rounded-full glass-card hover:bg-red-500/10 transition-colors"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            aria-label="Close media gallery"
+          >
+            <X className="w-6 h-6 text-foreground" />
+          </motion.button>
+        </div>
+
+        {/* Tabs */}
+        <div className="flex gap-4 mb-8 border-b border-border">
+          <button
+            onClick={() => setActiveTab("video")}
+            className={`pb-3 px-1 font-body text-sm font-medium transition-colors ${
+              activeTab === "video"
+                ? "text-primary border-b-2 border-primary"
+                : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            Videos
+          </button>
+          <button
+            onClick={() => setActiveTab("design")}
+            className={`pb-3 px-1 font-body text-sm font-medium transition-colors ${
+              activeTab === "design"
+                ? "text-primary border-b-2 border-primary"
+                : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            Designs
+          </button>
+          <button
+            onClick={() => setActiveTab("logo")}
+            className={`pb-3 px-1 font-body text-sm font-medium transition-colors ${
+              activeTab === "logo"
+                ? "text-primary border-b-2 border-primary"
+                : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            Logos
+          </button>
+        </div>
+
+        {/* Content */}
+        <div className="flex-grow overflow-y-auto">
+          {activeTab === "video" && <VideoCarousel />}
+          {activeTab === "design" && <DesignGallery />}
+          {activeTab === "logo" && <LogoGallery />}
+        </div>
+      </div>
+    </motion.div>
+  );
+}

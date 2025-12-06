@@ -195,7 +195,7 @@ function ServiceCard3D({
           </h3>
 
           {/* Description */}
-          <p className="text-muted-foreground font-body text-sm leading-relaxed relative z-10">
+          <p className="text-muted-foreground font-body text-sm leading-relaxed relative z-10 font-times">
             {service.description}
           </p>
 
@@ -325,7 +325,7 @@ export function ServicesExpanded() {
             "One Stop Digital Solution Provider"
           </p>
           <p
-            className="text-muted-foreground font-body text-lg mt-4 tracking-wider"
+            className="text-muted-foreground font-body text-lg mt-4 tracking-wider font-times"
             style={{
               fontFeatureSettings: "'salt', 'ss02', 'ss03'",
             }}
