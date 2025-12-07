@@ -1,65 +1,80 @@
 import { motion } from "framer-motion";
 import { ExternalLink, Github, FileText } from "lucide-react";
 
-const projects = [
+interface Project {
+  title: string;
+  description: string;
+  tags: string[];
+  color: string;
+  featured?: boolean;
+  liveUrl: string;
+  codeUrl?: string;
+}
+
+const projects: Project[] = [
   {
     title: "EDU-CRM",
     description: "Biggest SaaS Project: Role-based dashboards, DB, automation",
     tags: ["SaaS", "Dashboard", "Automation"],
     color: "#00E6FF",
     featured: true,
+    liveUrl: "https://educrm-frontend.vercel.app/",
   },
   {
     title: "Polished Nails",
     description: "Beauty e-commerce Portal with modern UX",
     tags: ["E-commerce", "Beauty", "React"],
     color: "#FF6B9D",
+    liveUrl: "https://polishednailss.com/",
+    codeUrl: "https://github.com/smayank001/Salon",
   },
   {
     title: "ACE Rank",
     description: "Educational Ranking Platform for students",
     tags: ["Education", "Rankings", "Platform"],
     color: "#FFD700",
+    liveUrl: "https://acerank.in/",
   },
   {
     title: "Profess Photography",
     description: "Photography Service Website with gallery",
     tags: ["Photography", "Portfolio", "Gallery"],
     color: "#8F00FF",
+    liveUrl: "https://professphotography.netlify.app/",
+    codeUrl: "https://github.com/smayank001/Photography_website",
   },
   {
     title: "Shorya Saxena Portfolio",
     description: "Personal portfolio showcasing creative work",
     tags: ["Portfolio", "Personal", "Design"],
     color: "#00FF88",
+    liveUrl: "https://shoryasaxenaportfolio.netlify.app/",
+    codeUrl: "https://github.com/smayank001/Gaming_Portfolio",
   },
   {
     title: "DanceFlow",
     description: "Dance Academy Website with booking system",
     tags: ["Dance", "Academy", "Booking"],
     color: "#FF4500",
+    liveUrl: "https://dancefloww.netlify.app/",
   },
   {
     title: "FranzFilo",
     description: "Food Service Website with online ordering",
     tags: ["Food", "Service", "Ordering"],
     color: "#FF6B35",
+    liveUrl: "https://franzfilo.netlify.app/",
   },
   {
     title: "AtoZ Car Rental",
     description: "Car rental platform with fleet management",
     tags: ["Automotive", "Rental", "Platform"],
     color: "#00BFFF",
+    liveUrl: "https://atozcarrental.netlify.app/",
   },
 ];
 
-function ProjectCard({
-  project,
-  index,
-}: {
-  project: (typeof projects)[0];
-  index: number;
-}) {
+function ProjectCard({ project, index }: { project: Project; index: number }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
@@ -122,7 +137,10 @@ function ProjectCard({
 
           {/* Actions */}
           <div className="flex gap-3">
-            <button
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-body transition-all duration-300 hover:scale-105 font-times"
               style={{
                 backgroundColor: `${project.color}20`,
@@ -132,11 +150,18 @@ function ProjectCard({
             >
               <ExternalLink className="w-4 h-4" />
               Live Demo
-            </button>
-            <button className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-body bg-muted text-muted-foreground hover:bg-muted/80 transition-all duration-300 hover:scale-105 font-times">
-              <Github className="w-4 h-4" />
-              Code
-            </button>
+            </a>
+            {project.codeUrl && (
+              <a
+                href={project.codeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-body bg-muted text-muted-foreground hover:bg-muted/80 transition-all duration-300 hover:scale-105 font-times"
+              >
+                <Github className="w-4 h-4" />
+                Code
+              </a>
+            )}
             <button className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-body bg-muted text-muted-foreground hover:bg-muted/80 transition-all duration-300 hover:scale-105 font-times">
               <FileText className="w-4 h-4" />
               Case Study
