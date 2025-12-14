@@ -272,7 +272,7 @@ export function ServicesExpanded() {
 
           {/* Neon sweep heading */}
           <div className="relative inline-block">
-            <h2 className="section-title mb-4">What I Build</h2>
+            <h2 className="section-title mb-4">What We Build</h2>
             <motion.div
               className="absolute inset-0"
               initial={{ x: "-100%" }}

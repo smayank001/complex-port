@@ -13,7 +13,7 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "EDU-CRM",
+    title: "EDU-CRM (Coming Soon)....",
     description: "Biggest SaaS Project: Role-based dashboards, DB, automation",
     tags: ["SaaS", "Dashboard", "Automation"],
     color: "#00E6FF",
@@ -44,7 +44,7 @@ const projects: Project[] = [
     codeUrl: "https://github.com/smayank001/Photography_website",
   },
   {
-    title: "Shorya Saxena Portfolio",
+    title: "Professional Portfolio",
     description: "Personal portfolio showcasing creative work",
     tags: ["Portfolio", "Personal", "Design"],
     color: "#00FF88",

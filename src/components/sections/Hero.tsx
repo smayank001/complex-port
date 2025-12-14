@@ -38,7 +38,7 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="font-heading text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight"
         >
-          <span className="text-foreground">I Build </span>
+          <span className="text-foreground">We Build </span>
           <span className="text-gradient neon-glow">Modern</span>
           <br />
           <span className="text-gradient-cyan">Digital Solutions</span>
