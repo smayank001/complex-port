@@ -82,10 +82,10 @@ export function Contact() {
                 {
                   icon: Mail,
                   label: "Email",
-                  value: "mayanksaxena1262@gmail.com",
+                  value: "webzosolution@gmail.com",
                 },
-                { icon: Phone, label: "Phone", value: "+91 8851432459" },
-                { icon: MapPin, label: "Location", value: "Noida, India" },
+                { icon: Phone, label: "Phone", value: "+91 000000000" },
+                { icon: MapPin, label: "Location", value: " India" },
               ].map((item, index) => {
                 const Icon = item.icon;
                 return (
