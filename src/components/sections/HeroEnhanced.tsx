@@ -56,7 +56,7 @@ function HologramName() {
       }}
     >
       <span className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary">
-        MAYANK SAXENA
+        WEBZO
       </span>
 
       {/* Hologram scan lines */}
@@ -314,10 +314,10 @@ export function HeroEnhanced() {
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
             <ParticleBlastButton href="#projects" variant="primary">
-              View My Work
+              View Our Work
             </ParticleBlastButton>
             <ParticleBlastButton href="#contact" variant="secondary">
-              Hire Me
+              AUDIT
             </ParticleBlastButton>
           </motion.div>
 

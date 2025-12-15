@@ -137,7 +137,7 @@ export function FuturisticNavbar({ onClose }: FuturisticNavbarProps) {
           <div className="flex justify-between items-center mb-16">
             <motion.a
               href="#"
-              className="font-heading text-4xl font-bold z-10 relative"
+              className="z-10 relative"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={(e) => {
@@ -147,9 +147,11 @@ export function FuturisticNavbar({ onClose }: FuturisticNavbarProps) {
                 window.scrollTo({ top: 0, behavior: "smooth" });
               }}
             >
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-purple-500">
-                MS
-              </span>
+              <img
+                src="/webzo_logo_back-removebg-preview.png"
+                alt="Webzo Logo"
+                className="h-16 w-auto object-contain"
+              />
             </motion.a>
 
             {onClose && (
@@ -247,7 +249,7 @@ export function FuturisticNavbar({ onClose }: FuturisticNavbarProps) {
                 handleNavigationClick(e, "#contact");
               }}
             >
-              <span className="relative z-10">Hire Me</span>
+              <span className="relative z-10">AUDIT</span>
               <motion.div
                 className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity"
                 style={{

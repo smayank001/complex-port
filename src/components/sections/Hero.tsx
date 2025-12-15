@@ -59,7 +59,7 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.7 }}
           className="font-heading text-2xl md:text-3xl text-primary neon-glow mb-12"
         >
-          Mayank Saxena
+          WEBZO
         </motion.p>
 
         <motion.div
@@ -69,10 +69,10 @@ export function Hero() {
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
           <a href="#projects" className="btn-neon-fill rounded-lg">
-            View My Work
+            View Our Work
           </a>
           <a href="#contact" className="btn-neon-purple rounded-lg">
-            Hire Me
+            AUDIT
           </a>
         </motion.div>
 

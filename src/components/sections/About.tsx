@@ -71,18 +71,19 @@ export function About() {
           >
             <div className="glass-card p-8 neon-border">
               <h3 className="font-heading text-3xl font-bold text-gradient mb-6">
-                Mayank Saxena
+                Webzo
               </h3>
               <p className="text-muted-foreground font-body text-lg leading-relaxed mb-6">
-                I'm a Full-Stack Engineer passionate about building modern
-                digital solutions that make a real impact. With expertise
-                spanning web development, mobile apps, AI integration, and
-                automation, I transform ideas into powerful digital realities.
+                We are a Full-Stack Development Company passionate about
+                building modern digital solutions that make a real impact. With
+                expertise spanning web development, mobile apps, AI integration,
+                and automation, we transform ideas into powerful digital
+                realities.
               </p>
               <p className="text-muted-foreground font-body leading-relaxed mb-8">
-                My approach combines technical excellence with creative
+                Our approach combines technical excellence with creative
                 problem-solving. Whether it's a sleek e-commerce platform, a
-                complex SaaS application, or an AI-powered chatbot, I deliver
+                complex SaaS application, or an AI-powered chatbot, we deliver
                 solutions that exceed expectations.
               </p>
 
@@ -123,7 +124,7 @@ export function About() {
             transition={{ duration: 0.8 }}
           >
             <h3 className="font-heading text-2xl font-bold text-foreground mb-8">
-              My Journey
+              Company Journey
             </h3>
             <div className="relative">
               {/* Timeline Line */}

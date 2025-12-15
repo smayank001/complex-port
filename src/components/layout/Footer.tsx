@@ -48,7 +48,7 @@ export function Footer() {
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 400 }}
             >
-              Mayank Saxena
+              Webzo
             </motion.a>
             <motion.p
               className="text-muted-foreground font-body text-sm mt-3 font-times"
@@ -101,7 +101,7 @@ export function Footer() {
             transition={{ delay: 0.3 }}
           >
             <p className="text-muted-foreground font-body text-sm font-times">
-              © {new Date().getFullYear()} Mayank Saxena. All rights reserved.
+              © {new Date().getFullYear()} Webzo. All rights reserved.
             </p>
             <p className="text-muted-foreground/70 font-body text-xs mt-1 font-times">
               Crafted with passion and precision
