@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { TechCube } from "../3d/TechCube";
+import { CinematicCodeAnimation } from "../effects/CinematicCodeAnimation";
 
 const technologies = [
   { name: "React", category: "Frontend", color: "#61DAFB" },
@@ -115,18 +116,17 @@ export function TechStack() {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* 3D Cube */}
+          {/* Cinematic Code Animation */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="order-2 lg:order-1"
+            className="order-2 lg:order-1 h-[400px] rounded-xl overflow-hidden relative"
           >
-            <TechCube />
-            <p className="text-center text-muted-foreground text-sm font-body mt-4">
-              Drag to rotate • Hover to stop
-            </p>
+            <CinematicCodeAnimation />
+            <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/40 to-background/10 rounded-xl pointer-events-none" />
+            <div className="absolute inset-0 rounded-xl border border-cyan-500/20 pointer-events-none" />
           </motion.div>
 
           {/* Tech Badges Grid - Centered */}

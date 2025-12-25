@@ -8,7 +8,7 @@ const testimonials = [
     role: "CEO, TechStart Inc.",
     company: "TechStart Inc.",
     content:
-      "Mayank delivered an exceptional e-commerce platform that exceeded our expectations. His attention to detail and technical expertise are unmatched. The platform has increased our conversion rate by 45%.",
+      "Webzo delivered an exceptional e-commerce platform that exceeded our expectations. Their attention to detail and technical expertise are unmatched. The platform has increased our conversion rate by 45%.",
     rating: 5,
     project: "E-commerce Platform",
     results: "+45% Conversion Rate",
@@ -18,7 +18,7 @@ const testimonials = [
     role: "Founder, EduLearn",
     company: "EduLearn",
     content:
-      "The CRM system Mayank built transformed our business operations. The automation features alone saved us countless hours every week. Our team productivity increased by 60% after implementation.",
+      "The CRM system Webzo built transformed our business operations. The automation features alone saved us countless hours every week. Our team productivity increased by 60% after implementation.",
     rating: 5,
     project: "Enterprise CRM",
     results: "+60% Productivity",
@@ -28,7 +28,7 @@ const testimonials = [
     role: "Director, Creative Agency",
     company: "Nova Creative",
     content:
-      "Working with Mayank was a fantastic experience. He understood our vision perfectly and delivered a stunning website that our clients love. The new site increased our leads by 75% in the first quarter.",
+      "Working with Webzo was a fantastic experience. They understood our vision perfectly and delivered a stunning website that our clients love. The new site increased our leads by 75% in the first quarter.",
     rating: 5,
     project: "Agency Website",
     results: "+75% Lead Generation",
@@ -38,7 +38,7 @@ const testimonials = [
     role: "CTO, DataFlow Systems",
     company: "DataFlow Systems",
     content:
-      "The AI chatbot integration was seamless. Mayank's knowledge of modern technologies and best practices is truly impressive. Customer satisfaction scores improved by 40% with 24/7 automated support.",
+      "The AI chatbot integration was seamless. Webzo's knowledge of modern technologies and best practices is truly impressive. Customer satisfaction scores improved by 40% with 24/7 automated support.",
     rating: 5,
     project: "AI Chatbot Solution",
     results: "+40% Customer Satisfaction",
@@ -48,7 +48,7 @@ const testimonials = [
     role: "Marketing Director, GrowthCo",
     company: "GrowthCo",
     content:
-      "Mayank's SEO optimization and performance enhancements transformed our digital presence. Our organic traffic grew by 120% in six months, and page load times decreased by 65%.",
+      "Webzo's SEO optimization and performance enhancements transformed our digital presence. Our organic traffic grew by 120% in six months, and page load times decreased by 65%.",
     rating: 5,
     project: "SEO & Performance",
     results: "+120% Organic Traffic",

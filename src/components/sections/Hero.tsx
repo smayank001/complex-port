@@ -28,7 +28,7 @@ export function Hero() {
           className="mb-6"
         >
           <span className="inline-block px-4 py-2 rounded-full border border-primary/30 bg-primary/10 text-primary font-body text-sm tracking-widest uppercase">
-            Full-Stack Engineer
+            Digital Solutions Agency
           </span>
         </motion.div>
 
@@ -39,7 +39,7 @@ export function Hero() {
           className="font-heading text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight"
         >
           <span className="text-foreground">We Build </span>
-          <span className="text-gradient neon-glow">Modern</span>
+          <span className="text-gradient neon-glow">Business-Grade</span>
           <br />
           <span className="text-gradient-cyan">Digital Solutions</span>
         </motion.h1>
@@ -50,7 +50,7 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="font-body text-xl md:text-2xl text-muted-foreground mb-4 tracking-wide"
         >
-          Web • Apps • AI • Automation
+          Professional Web, App & Marketing Services
         </motion.p>
 
         <motion.p

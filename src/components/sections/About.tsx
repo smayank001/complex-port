@@ -4,17 +4,17 @@ import { Code2, Rocket, Users, Award } from "lucide-react";
 const timeline = [
   {
     year: "2019",
-    title: "Started Coding Journey",
-    description: "Began learning web development",
+    title: "Company Founded",
+    description: "Started journey in web development",
   },
   {
     year: "2020",
-    title: "First Freelance Project",
+    title: "First Major Project",
     description: "Delivered first client website",
   },
   {
     year: "2021",
-    title: "Full-Stack Mastery",
+    title: "Service Expansion",
     description: "Expanded to backend & databases",
   },
   {
@@ -56,7 +56,7 @@ export function About() {
           className="text-center mb-16"
         >
           <span className="inline-block px-4 py-2 rounded-full border border-primary/30 bg-primary/10 text-primary font-body text-sm tracking-widest uppercase mb-6">
-            About Me
+            About Us
           </span>
           <h2 className="section-title mb-4">Our Journey</h2>
         </motion.div>

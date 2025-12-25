@@ -6,14 +6,13 @@ import {
 } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 import { Menu, X, Home, Code, Video, Cpu, User, Mail } from "lucide-react";
-import MediaFullscreen from "@/components/media/MediaFullscreen";
 import { handleAnchorClick } from "@/lib/smoothScroll";
 
 const navItems = [
   { name: "Home", href: "#hero", icon: Home },
   { name: "Projects", href: "#projects", icon: Code },
   { name: "Services", href: "#services", icon: Cpu },
-  { name: "Media", href: "#media", icon: Video },
+  { name: "Media", href: "/media-gallery", icon: Video },
   { name: "Tech", href: "#tech", icon: Cpu },
   { name: "About", href: "#about", icon: User },
   { name: "Contact", href: "#contact", icon: Mail },
@@ -27,7 +26,7 @@ export function FuturisticNavbar({ onClose }: FuturisticNavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
-  const [isMediaFullscreen, setIsMediaFullscreen] = useState(false);
+
   const controls = useAnimation();
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -87,18 +86,6 @@ export function FuturisticNavbar({ onClose }: FuturisticNavbarProps) {
       mouseX.set(e.clientX - rect.left);
       mouseY.set(e.clientY - rect.top);
     }
-  };
-
-  const handleMediaClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    setIsMediaFullscreen(true);
-    document.body.style.overflow = "hidden";
-  };
-
-  const closeMediaFullscreen = () => {
-    setIsMediaFullscreen(false);
-    document.body.style.overflow = "auto";
-    if (onClose) onClose();
   };
 
   const handleNavigationClick = (
@@ -179,10 +166,11 @@ export function FuturisticNavbar({ onClose }: FuturisticNavbarProps) {
                     key={item.name}
                     href={item.href}
                     onClick={(e) => {
-                      if (item.name === "Media") {
-                        e.preventDefault();
-                        handleMediaClick(e);
+                      if (item.href.startsWith("/")) {
+                        // For internal routes, let the browser handle navigation
+                        if (onClose) onClose();
                       } else {
+                        // For anchor links, use smooth scroll
                         handleNavigationClick(e, item.href);
                       }
                     }}
@@ -234,7 +222,7 @@ export function FuturisticNavbar({ onClose }: FuturisticNavbarProps) {
             transition={{ delay: 0.8 }}
           >
             <motion.a
-              href="#contact"
+              href="/audit"
               className="relative px-10 py-4 rounded-full font-heading font-bold text-lg uppercase tracking-wider z-10 overflow-hidden"
               style={{
                 background: "linear-gradient(45deg, #00E6FF, #8F00FF)",
@@ -246,7 +234,9 @@ export function FuturisticNavbar({ onClose }: FuturisticNavbarProps) {
               }}
               whileTap={{ scale: 0.95 }}
               onClick={(e) => {
-                handleNavigationClick(e, "#contact");
+                e.preventDefault();
+                window.location.href = "/audit";
+                if (onClose) onClose();
               }}
             >
               <span className="relative z-10">AUDIT</span>
@@ -261,9 +251,6 @@ export function FuturisticNavbar({ onClose }: FuturisticNavbarProps) {
           </motion.div>
         </div>
       </motion.nav>
-
-      {/* Media Fullscreen Modal */}
-      {isMediaFullscreen && <MediaFullscreen onClose={closeMediaFullscreen} />}
     </>
   );
 }

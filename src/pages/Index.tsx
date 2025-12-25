@@ -5,6 +5,7 @@ import { Projects } from "@/components/sections/Projects";
 import { ServicesExpanded } from "@/components/sections/ServicesExpanded";
 import { TechStack } from "@/components/sections/TechStack";
 import { About } from "@/components/sections/About";
+import { Media } from "@/components/sections/Media";
 import { ClientStories } from "@/components/sections/Testimonials";
 import { Contact } from "@/components/sections/Contact";
 import { CustomCursor } from "@/components/effects/CustomCursor";
@@ -28,6 +29,7 @@ const Index = () => {
           <Projects />
           <ServicesExpanded />
           <TechStack />
+          <Media />
           <About />
           <ClientStories />
           <Contact />

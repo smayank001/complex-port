@@ -58,6 +58,11 @@ function HologramName() {
       <span className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary">
         WEBZO
       </span>
+      {/* <img
+        src="/webzo_logo_back-removebg-preview.png"
+        alt="Logo"
+        className="inline-block h-8 md:h-32 w-auto"
+      /> */}
 
       {/* Hologram scan lines */}
       <motion.div
@@ -316,7 +321,7 @@ export function HeroEnhanced() {
             <ParticleBlastButton href="#projects" variant="primary">
               View Our Work
             </ParticleBlastButton>
-            <ParticleBlastButton href="#contact" variant="secondary">
+            <ParticleBlastButton href="/audit" variant="secondary">
               AUDIT
             </ParticleBlastButton>
           </motion.div>

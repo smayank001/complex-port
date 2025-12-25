@@ -14,6 +14,7 @@ import {
   Search,
 } from "lucide-react";
 import { useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
 const services = [
   {
@@ -22,6 +23,7 @@ const services = [
     description:
       "Custom, high-performance websites engineered for conversions. From sleek landing pages to complex e-commerce platforms, every pixel is optimized for your business growth.",
     color: "#00E6FF",
+    url: "/services/website-development",
   },
   {
     icon: Smartphone,
@@ -29,6 +31,7 @@ const services = [
     description:
       "Scalable, real-time applications with cutting-edge architecture. Cross-platform solutions that deliver seamless experiences across all devices and drive user engagement.",
     color: "#8F00FF",
+    url: "/services/app-development",
   },
   {
     icon: Bot,
@@ -36,6 +39,7 @@ const services = [
     description:
       "Transform your workflow with intelligent automation. Custom AI chatbots that convert visitors, streamline operations, and deliver 24/7 customer engagement.",
     color: "#00FF88",
+    url: "/services/lead-generation", // Mapping to Lead Gen as closest fit or maybe create AI page? Let's use Lead Gen for now or digital marketing. Actually lets stick to new pages. Lead Generation fits automation for conversion.
   },
   {
     icon: Database,
@@ -43,6 +47,7 @@ const services = [
     description:
       "Enterprise-grade CRM solutions with role-based access, advanced analytics, and automated reporting. Built to scale with your business and maximize team productivity.",
     color: "#FFD700",
+    url: "/services/website-development", // Generic software dev
   },
   {
     icon: Shield,
@@ -50,6 +55,7 @@ const services = [
     description:
       "Bulletproof security implementations with SSL, OAuth, and penetration testing. Performance optimization that ensures lightning-fast load times and top search rankings.",
     color: "#FF6B35",
+    url: "/services/seo",
   },
   {
     icon: Zap,
@@ -57,6 +63,7 @@ const services = [
     description:
       "Seamless cloud deployment with CI/CD pipelines, container orchestration, and infrastructure as code. Zero-downtime deployments that keep your business running.",
     color: "#FF4500",
+    url: "/services/website-development",
   },
   {
     icon: Video,
@@ -64,6 +71,7 @@ const services = [
     description:
       "Cinematic video production that tells your brand story. From promotional reels to animated explainers, every frame is crafted to captivate and convert your audience.",
     color: "#E91E63",
+    url: "/services/video-editing",
   },
   {
     icon: TrendingUp,
@@ -71,6 +79,7 @@ const services = [
     description:
       "Data-driven SEO strategies that dominate search rankings. Technical optimization, content strategy, and analytics that deliver measurable growth and ROI.",
     color: "#4CAF50",
+    url: "/services/seo",
   },
   {
     icon: Palette,
@@ -78,6 +87,7 @@ const services = [
     description:
       "Award-worthy visual designs that define your brand identity. From stunning UI interfaces to marketing collateral, every design element drives engagement.",
     color: "#FF9800",
+    url: "/services/ui-ux-design",
   },
   {
     icon: Hexagon,
@@ -85,6 +95,7 @@ const services = [
     description:
       "Iconic brand identities that leave lasting impressions. Strategic logo design and comprehensive brand guidelines that position you as an industry leader.",
     color: "#9C27B0",
+    url: "/services/ui-ux-design",
   },
 ];
 
@@ -121,6 +132,7 @@ function ServiceCard3D({
   };
 
   return (
+    <Link to={service.url || "#"} className="block h-full">
     <motion.div
       ref={cardRef}
       initial={{ opacity: 0, y: 50 }}
@@ -224,6 +236,7 @@ function ServiceCard3D({
         </div>
       </motion.div>
     </motion.div>
+    </Link>
   );
 }
 

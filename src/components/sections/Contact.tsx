@@ -19,7 +19,7 @@ export function Contact() {
     // Simulate form submission
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
-    toast.success("Message sent successfully! I'll get back to you soon.");
+    toast.success("Message sent successfully! We'll get back to you soon.");
     setFormData({ name: "", email: "", subject: "", message: "" });
     setIsSubmitting(false);
   };
@@ -52,7 +52,7 @@ export function Contact() {
           </span>
           <h2 className="section-title mb-4">Let's Build Something Great</h2>
           <p className="text-muted-foreground font-body text-lg max-w-2xl mx-auto">
-            Have a project in mind? Let's discuss how I can help bring your
+            Have a project in mind? Let's discuss how we can help bring your
             vision to life.
           </p>
         </motion.div>
@@ -71,7 +71,7 @@ export function Contact() {
                 Get In Touch
               </h3>
               <p className="text-muted-foreground font-body leading-relaxed">
-                I'm always open to discussing new projects, creative ideas, or
+                We're always open to discussing new projects, creative ideas, or
                 opportunities to be part of your vision. Feel free to reach out
                 through any of the channels below.
               </p>
@@ -183,7 +183,7 @@ export function Contact() {
                     required
                     rows={5}
                     className="w-full px-4 py-3 rounded-lg bg-muted border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all duration-300 font-body text-foreground resize-none"
-                    placeholder="Tell me about your project..."
+                    placeholder="Tell us about your project..."
                   />
                 </div>
 

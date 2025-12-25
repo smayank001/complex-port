@@ -195,9 +195,9 @@ export function Projects() {
           <span className="inline-block px-4 py-2 rounded-full border border-primary/30 bg-primary/10 text-primary font-body text-sm tracking-widest uppercase mb-6">
             Portfolio
           </span>
-          <h2 className="section-title mb-4">Featured Projects</h2>
+          <h2 className="section-title mb-4">Our Featured Projects</h2>
           <p className="text-muted-foreground font-body text-lg max-w-2xl mx-auto">
-            A showcase of my recent work — from SaaS platforms to e-commerce
+            A showcase of our recent work — from SaaS platforms to e-commerce
             solutions
           </p>
         </motion.div>
